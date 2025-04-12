@@ -70,7 +70,25 @@ def send_term(request):
     else:
         add_term(request)
 
+
+
 def show_stats(request):
+    """
+    Обрабатывает HTTP запрос и рендерит страницу с статистикой по терминам.
+
+    Эта функция:
+    - Извлекает статистику по терминам с помощью функции `get_terms_stats` из модуля `terms_work`.
+    - Отправляет полученную статистику в шаблон "stats.html" для отображения пользователю.
+
+    Аргументы:
+        request (HttpRequest): Объект запроса, содержащий информацию о запросе от клиента.
+
+    Возвращает:
+        HttpResponse: Ответ с отрендеренным шаблоном "stats.html", который содержит статистику по терминам.
+
+    Пример:
+        show_stats(request)
+    """
     stats = terms_work.get_terms_stats()
     return render(request, "stats.html", stats)
 

@@ -59,5 +59,3 @@ def get_terms_stats():
                 user_terms += 1
             elif "db" in added_by:
                 db_terms += 1
-    st
-

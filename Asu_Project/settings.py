@@ -55,7 +55,7 @@ MIDDLEWARE = [
 ]
 
 # Основной файл URL-ов
-ROOT_URLCONF = 'proj_eng.urls'
+ROOT_URLCONF = 'Asu_Project.urls'
 
 # Настройки шаблонов
 TEMPLATES = [
@@ -77,7 +77,7 @@ TEMPLATES = [
 ]
 
 # Приложение WSGI для развертывания проекта
-WSGI_APPLICATION = 'proj_eng.wsgi.application'
+WSGI_APPLICATION = 'Asu_Project.wsgi.application'
 
 # Настройки базы данных
 DATABASES = {

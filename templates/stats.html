@@ -1,43 +1,60 @@
 {% extends "base_page.html" %}
 
+{% load static %}
+
 {% block page_title %}
-Статистика 
+    <div class="d-flex align-items-center">
+        <img src="{% static 'stat.svg' %}" alt="Статистика словаря" width="100" height="100" class="me-2">
+        Статистика словарая
+    </div>
 {% endblock %}
 
 {% block page_lead %}
-Здесь вы можете увидеть краткую статистику по состоянию словаря на данный момент.{% endblock %}
+Здесь вы можете увидеть краткую статистику по состоянию словаря на данный момент.
+{% endblock %}
 
 {% block content %}
+<!-- Основной контейнер для отображения статистики -->
 <div class="container px-4 py-5" id="stats">
+    
+    <!-- Раздел для отображения общего количества терминов -->
     <div>
-        <h3 class="py-2">Количество терминов</h3>
+        <h3 class="py-2">Количество слов</h3>
     </div>
     <div class="row text-center">
+        <!-- Блок с количеством всех терминов -->
         <div class="col-md-4">
             <h4>{{ terms_all }}</h4>
             <p class="text-muted">всего</p>
         </div>
+        <!-- Блок с количеством терминов, которые изначально были в базе -->
         <div class="col-md-4">
             <h4>{{ terms_own }}</h4>
             <p class="text-muted">изначально бывших в базе</p>
         </div>
+        <!-- Блок с количеством терминов, добавленных через форму -->
         <div class="col-md-4">
             <h4>{{ terms_added }}</h4>
             <p class="text-muted">добавленных через <a href="/add-term">форму добавления термина</a></p>
         </div>
     </div>
+
+    <!-- Раздел для отображения статистики по описаниям -->
     <div>
         <h3 class="py-2">Описания</h3>
     </div>
     <div class="row text-center">
+        <!-- Блок со средним количеством слов в описаниях -->
         <div class="col-md-4">
             <h4>{{ words_avg }}</h4>
             <p class="text-muted">слов в среднем</p>
         </div>
+        <!-- Блок с максимальным количеством слов в описаниях -->
         <div class="col-sm-4">
             <h4>{{ words_max }}</h4>
             <p class="text-muted">максимум</p>
         </div>
+        <!-- Блок с минимальным количеством слов в описаниях -->
         <div class="col-sm-4">
             <h4>{{ words_min }}</h4>
             <p class="text-muted">минимум</p>
