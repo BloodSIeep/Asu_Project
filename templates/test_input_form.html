@@ -10,6 +10,23 @@
 
 
 {% block content %}
+
+
+<style>
+    .result {
+        background-color: #ffffff; /* Цвет фона для блока результата */
+    }
+    .table-responsive {
+        background-color: #ffffff; /* Цвет фона для таблицы */
+    }
+
+    .mb-4 {
+        background-color: #ffffff; /* Цвет фона для блоков с вопросами */
+    }
+</style>
+
+
+
     {% if score is not None %}
         <div class="result py-3">
             <h3 class="text-center">Ваша оценка: {{ score|floatformat:2 }}%</h3> <!-- Оценка в процентах с двумя знаками после запятой -->
