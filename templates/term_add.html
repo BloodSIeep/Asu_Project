@@ -1,11 +1,11 @@
 {% extends "base_page.html" %}
 
 {% block page_title %}
-Добавить слово
+Обновление перечня интерфейсов
 {% endblock %}
 
 {% block page_lead %}
-Если вы считаете, что предложееный словарь не полон - добавьте новое слово и его перевод с помощью этой формы{% endblock %}
+В случае выхода каких-то обновлений интерфейсов или выхода новых интерфейсов на этой странице вы можите добавить информацию или дополнить существующую{% endblock %}
 
 
 {% block content %}
@@ -21,19 +21,20 @@
             </div>
             <div class="col-md-6">
                 <label for="email">Ваш контактный email:</label>
-                <input type="text" class="form-control input-lg" name="email" id="email" placeholder="ivan@ivanov.com" value required>
+                <input type="email" class="form-control input-lg" name="email" id="email" placeholder="ivan@ivanov.com" value required>
+                <div id="email-error" class="text-danger" style="display: none;">Пожалуйста, введите корректный email.</div>
             </div>
         </div>
         <div class="row px-5 py-2">
-            <h3>Ваш термин</h3>
+            <h3>Информация об интерфейсе</h3>
         </div>
         <div class="row px-5 py-2">
             <div class="col-md-4">
-                <label for="new_term">Термин</label>
+                <label for="new_term">Наименование интерфейса</label>
                 <input type="text" class="form-control input-lg" name="new_term" id="new_term">
             </div>
             <div class="col-md-8">
-                <label for="new_definition">Объяснение термина</label>
+                <label for="new_definition">Описание</label>
                 <textarea type="text" class="form-control input-lg" name="new_definition" id="new_definition" aria-describedby="definition_note" rows="3"></textarea>
                 <div id="definition_note" class="form-text">Постарайтесь уложиться в одно, максимум два предложения</div>
             </div>
@@ -43,4 +44,5 @@
         </div>
     </form>
 </div>
+
 {% endblock %}

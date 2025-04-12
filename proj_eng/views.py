@@ -4,20 +4,16 @@ from . import terms_work
 from . import texts_work
 from . import tests_work
 
-
 def index(request):
     return render(request, "index.html")
 
-
 def terms_list(request):
     terms = terms_work.get_terms_for_table()
-    return render(request, "term_list.html", context={"terms":terms}) 
-
+    return render(request, "term_list.html", context={"terms": terms})
 
 def texts_list(request):
-     texts = texts_work.get_texts_for_table()
-     return render(request, "text_list.html", context={"texts": texts})
-
+    texts = texts_work.get_texts_for_table()
+    return render(request, "text_list.html", context={"texts": texts})
 
 def test_input(request):
     tests = tests_work.get_tests()
@@ -48,11 +44,8 @@ def test_input(request):
         "tests": tests
     })
 
-
-
 def add_term(request):
     return render(request, "term_add.html")
-
 
 def send_term(request):
     if request.method == "POST":
@@ -77,7 +70,7 @@ def send_term(request):
     else:
         add_term(request)
 
-
 def show_stats(request):
     stats = terms_work.get_terms_stats()
     return render(request, "stats.html", stats)
+
