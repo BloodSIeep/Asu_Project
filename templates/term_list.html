@@ -1,0 +1,38 @@
+{% extends "base_page.html" %}
+
+{% block page_title %}
+Перечень
+{% endblock %}
+
+{% block page_lead %}
+Здесь вы найдете названия распространенных промышленных интерфейсов и их параметры.
+{% endblock %}
+
+{% block content %}
+<div class="container px-4 py-5" id="terms-table">
+    {% if terms %}
+    <div class="table-responsive">
+        <table class="table table-striped table-sm">
+          <thead>
+            <tr>
+              <th scope="col" class="py-3">#</th>
+              <th scope="col" class="py-3">Модель</th>
+              <th scope="col" class="py-3">Описание</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for cnt, term, definition in terms %}
+            <tr>
+                <td class="py-3">{{ cnt }}</td>
+                <td class="py-3">{{ term }}</td>
+                <td class="py-3">{{ definition }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+    </div>
+    {% else %}
+        <p>Термины еще не добавлены. Пожалуйста, добавьте новые термины через <a href="/add-term/">форму добавления термина</a>.</p>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends "base_page.html" %}
+
+{% block page_title %}
+Примеры реализации проектов с применением промышленных интерфейсов
+{% endblock %}
+
+{% block page_lead %}
+Данная страница предназначена для разъяснения области применения интерфейсов и их применимости для различных проектов.
+{% endblock %}
+
+{% block content %}
+<div class="container px-4 py-5" id="text-table">
+    <div class="table-responsive">
+        <table class="table table-striped table-sm">
+          <thead>
+            <tr>
+              <th scope="col" class="py-3">#</th>
+              <th scope="col" class="py-3">Интерфейс</th>
+              <th scope="col" class="py-3">Проект</th>
+              <th scope="col" class="py-3">Описание</th>
+              <th scope="col" class="py-3">Причина выбора</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for cnt, interface, project, description, why_exactly in texts %}
+            <tr>
+                <td class="py-3">{{ cnt }}</td>
+                <td class="py-3">{{ interface }}</td>
+                <td class="py-3">{{ project }}</td>
+                <td class="py-3">{{ description }}</td>
+                <td class="py-3">{{ why_exactly }}</td>  
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+</div>
+{% endblock %}

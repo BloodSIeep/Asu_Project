@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block pagetitle %}↓Тут нет полезной информации... Она ниже↓ :D {% endblock %}</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}">
+
+</head>
+<body>
+<main>
+    <div class="container">
+        <!-- Шапка -->
+        <header class="border-bottom my-4">
+            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+                <div class="fs-1 mb-1 d-flex align-items-center gap-2">
+                    <img src="{% static 'token.svg' %}" alt="Проект про промышленные интерфейсы передачи данных" width="100" height="100"/>
+                    <span>Проект про промышленные интерфейсы передачи данных</span>
+                </div>
+            </a>
+        </header>
+
+        <!-- Заголовок страницы -->
+        <div class="p-5 mb-4 bg-light rounded-3" id="title-box">
+            <div class="container-fluid py-5">
+                <h1 class="display-4 fw-bold">{% block page_title %}{% endblock %}</h1>
+                <p class="col-md-10 fs-4">{% block page_lead %}{% endblock %}</p>
+            </div>
+        </div>
+
+        <!-- Основное содержимое -->
+        {% block content %}{% endblock %}
+
+        <!-- Подвал -->
+        <footer class="footer pt-3 mt-4 text-muted border-top">
+            © 2025
+        </footer>
+    </div>
+</main>
+</body>
+</html>

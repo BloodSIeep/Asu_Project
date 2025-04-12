@@ -1,0 +1,54 @@
+{% extends "base_page.html" %}
+
+{% block page_title %}
+Тест
+{% endblock %}
+
+{% block page_lead %}
+Проверка усвоения материала:
+{% endblock %}
+
+
+{% block content %}
+    {% if score is not None %}
+        <div class="result py-3">
+            <h3 class="text-center">Ваша оценка: {{ score|floatformat:2 }}%</h3> <!-- Оценка в процентах с двумя знаками после запятой -->
+        </div>
+        <div class="table-responsive">
+            <table class="table table-striped table-sm">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Вапрос</th>
+                        <th>Ваш ответ</th>
+                        <th>Правильный ответ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for cnt, text, user_input, correct, is_correct in submitted_data %}
+                        <tr class="{% if is_correct %}table-success{% else %}table-danger{% endif %}">
+                            <td>{{ cnt }}</td>
+                            <td>{{ text }}</td>
+                            <td>{{ user_input }}</td>
+                            <td>{{ correct }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <form method="post">
+            {% csrf_token %}
+            <div class="container px-4 py-5">
+                <h4>Ответьте на вопросы:</h4>
+                {% for cnt, text, correct in tests %}
+                    <div class="mb-4">
+                        <p><strong>{{ text }}</strong></p>
+                        <input type="text" name="user_input_{{ cnt }}" class="form-control" placeholder="Введите ответ" />
+                    </div>
+                {% endfor %}
+                <button type="submit" class="btn btn-primary">Отправить</button>
+            </div>
+        </form>
+    {% endif %}
+{% endblock %}

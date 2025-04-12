@@ -1,0 +1,113 @@
+{% extends "base_page.html" %}
+
+{% block page_title %}
+Промышленные интерфейсы — это база,<br> 
+это знать надо... <br>
+{% endblock %}
+
+{% block page_lead %}
+Проект по дисциплине "Программирование на Python". <br>
+Тема проекта: "Разработка Web-приложения на Django". <br>
+Проект выполнил студент группы М01-401Д Саушкин Никита Викторович.
+{% endblock %}
+
+
+{% block content %}
+<div class="container px-4 py-5" id="project-contents">
+    <h2 class="pb-2 border-bottom">Что есть в этом проекте</h2>
+
+    <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+        <div class="col d-flex">
+            <div class="icon-square text-bg-light d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+                <svg class="bi" width="1em" height="1em">
+                    <use xlink:href="#cpu-fill"></use>
+                </svg>
+            </div>
+            <div>
+                <h3 class="fs-2">Перечень</h3>
+                <p>Наименования промышленных интерфейсов и их параметры</p>
+                <a href="/terms-list" class="btn btn-primary">Посмотреть</a>
+            </div>
+        </div>
+
+        <div class="col d-flex">
+            <div class="icon-square text-bg-light d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+                <svg class="bi" width="1em" height="1em">
+                    <use xlink:href="#cpu-fill"></use>
+                </svg>
+            </div>
+            <div>
+                <h3 class="fs-2">Реализация</h3>
+                <p>Рекомендации по применения</p>
+                <a href="/texts-list/" class="btn btn-primary">Изучить</a>
+            </div>
+        </div>
+
+        <div class="col d-flex">
+            <div class="icon-square text-bg-light d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+                <svg class="bi" width="1em" height="1em">
+                    <use xlink:href="#cpu-fill"></use>
+                </svg>
+            </div>
+            <div>
+                <h3 class="fs-2">Форма обновления словаря</h3>
+                <p>Если вы хотите добавить слово в словарь - заполните эту простую форму</p>
+                <a href="/add-term" class="btn btn-primary">
+                    Заполнить
+                </a>
+            </div>
+        </div>
+
+        <div class="col d-flex">
+            <div class="icon-square text-bg-light d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+                <svg class="bi" width="1em" height="1em">
+                    <use xlink:href="#cpu-fill"></use>
+                </svg>
+            </div>
+            <div>
+                <h3 class="fs-2">Тест</h3>
+                <p>Ответьте на небольшие вопросы</p>
+                <a href="/test-input/" class="btn btn-primary">
+                    Начать
+                </a>
+            </div>
+        </div>
+
+        <div class="col d-flex">
+            <div class="icon-square text-bg-light d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+                <svg class="bi" width="1em" height="1em">
+                    <use xlink:href="#cpu-fill"></use>
+                </svg>
+            </div>
+            <div>
+                <h3 class="fs-2">Статистика</h3>
+                <p>Сколько слов уже есть?</p>
+                <a href="/stats" class="btn btn-primary">
+                    Изучить
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <h2 class="pb-2 border-bottom">Что можете сделать вы?</h2>
+    <div class="row g-4 py-5 row-cols-1 row-cols-lg-2">
+        <div class="col-lg-4">
+            <h4 class="py-1">Изучить словарь</h4>
+        </div>
+
+        <div class="col-lg-8">
+            <p>Чтобы легко прочитать предложенные тексты и ответить на вопросы, вам стоит сначала ознакомиться со <span class="fst-italic">словарем</span>. Вам кажется, что он не полон — не беда. Вам поможет <a href="/add-term">форма обновления словаря</a>.</p>
+        </div>
+    </div>
+
+    <div class="row g-4 py-5 row-cols-1 row-cols-lg-2">
+        <div class="col-lg-4">
+            <h4 class="py-1">Попробуйте прочитать несколько текстов</h4>
+        </div>
+        <div class="col-lg-8">
+            <p>Уверены в своих силах? Попробуйте прочитать несколько предложенных текстов и ответить на простые вопросы по ним.</p>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
