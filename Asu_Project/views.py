@@ -21,7 +21,7 @@ def index(request):
 
 def terms_list(request):
     """
-    Отображает список терминов.
+    Отображает список перечня.
 
     :param request: HTTP-запрос.
     :return: Рендеринг страницы list.html с контекстом, содержащим список терминов.
@@ -31,10 +31,10 @@ def terms_list(request):
 
 def texts_list(request):
     """
-    Отображает список текстов.
+    Отображает список перечня.
 
     :param request: HTTP-запрос.
-    :return: Рендеринг страницы realization.html с контекстом, содержащим список текстов.
+    :return: Рендеринг страницы realization.html с контекстом, содержащим список терминов.
     """
     texts = texts_work.get_texts_for_table()
     return render(request, "realization.html", context={"texts": texts})
@@ -111,19 +111,24 @@ def send_term(request):
     else:
         return add_term(request)
 
-def show_stats(request):
-    """
-    Обрабатывает HTTP-запрос и рендерит страницу с статистикой по терминам.
 
-    Эта функция:
-    - Извлекает статистику по терминам с помощью функции `get_terms_stats` из модуля `terms_work`.
-    - Отправляет полученную статистику в шаблон "stats.html" для отображения пользователю.
+
+
+
+def i2c_explanation(request):
+    """
+    Отображает страницу с объяснением разбора пакета I2C.
 
     :param request: HTTP-запрос.
-    :return: Рендеринг страницы stats.html с контекстом, содержащим статистику по терминам.
+    :return: Рендеринг страницы i2c_explanation.html.
     """
-    stats = terms_work.get_terms_stats()
-    return render(request, "stats.html", stats)
+    return render(request, "i2c_explanation.html")
+
+
+
+
+
+
 
 def decode_i2c_packet(request):
     """
