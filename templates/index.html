@@ -10,11 +10,8 @@
 Тема проекта: "Разработка Web-приложения на Django". <br>
 Проект выполнил студент группы М01-401Д Саушкин Никита Викторович.
 {% endblock %}
-
-
 {% block content %}
 <!-- <div class="col d-flex" style="background-color: #f8f9fa;"> -->
-
 
 <div class="container px-4 py-5" id="project-contents">
     <h2 class="pb-2 border-bottom">Что есть в этом проекте</h2>
@@ -91,7 +88,21 @@
             </div>
         </div>
     </div>
-
+    <div class="col d-flex">
+        <div class="icon-square text-bg-light d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+            <svg class="bi" width="1em" height="1em">
+                <use xlink:href="#cpu-fill"></use>
+            </svg>
+        </div>
+        <div class="bg-light p-3 rounded">
+            <h3 class="fs-2">Декодировщик I2C</h3>
+            <p>Декодируйте битовый пакет I2C</p>
+            <a href="/i2c_decoder/" class="btn btn-primary">
+                Декодировать
+            </a>
+        </div>
+    </div>
+</div>
     <h2 class="pb-2 border-bottom">Чем тут можно заняться:</h2>
     <div class="row g-4 py-5 row-cols-1 row-cols-lg-2">
         <div class="col-lg-4">

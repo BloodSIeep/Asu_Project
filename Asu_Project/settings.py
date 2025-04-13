@@ -60,7 +60,7 @@ ROOT_URLCONF = 'Asu_Project.urls'
 # Настройки шаблонов
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',  # Используем DjangoTemplates для рендеринга
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',#DjangoTemplates для рендеринга
         'DIRS': [
             os.path.join(BASE_DIR, 'templates')  # Путь к директории с шаблонами
         ],
@@ -90,16 +90,20 @@ DATABASES = {
 # Валидация паролей — набор проверок для паролей пользователей
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',  # Проверка на схожесть атрибутов
+        # Проверка на схожесть атрибутов
+        'NAME':'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',  # Минимальная длина пароля
+        # Минимальная длина пароля
+        'NAME':'django.contrib.auth.password_validation.MinimumLengthValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',  # Проверка на распространенные пароли
+        # Проверка на распространенные пароли
+        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',  # Проверка на числовые пароли
+        # Проверка на числовые пароли
+        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
 
@@ -115,7 +119,8 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'  # Путь к директории с с
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),  # Путь к статическим файлам проекта
 ]
-STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'  # Хранилище для статических файлов
+# Хранилище для статических файлов
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
 # Тип поля для основного первичного ключа
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'  # Используем BigAutoField для первичных ключей
