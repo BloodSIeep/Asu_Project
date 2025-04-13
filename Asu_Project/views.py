@@ -111,10 +111,6 @@ def send_term(request):
     else:
         return add_term(request)
 
-
-
-
-
 def i2c_explanation(request):
     """
     Отображает страницу с объяснением разбора пакета I2C.
@@ -123,12 +119,6 @@ def i2c_explanation(request):
     :return: Рендеринг страницы i2c_explanation.html.
     """
     return render(request, "i2c_explanation.html")
-
-
-
-
-
-
 
 def decode_i2c_packet(request):
     """
@@ -161,14 +151,15 @@ def decode_packet(packet):
     try:
         # Удаляем пробелы и разбиваем строку на биты
         bits = [int(bit) for bit in packet.replace(" ", "")]
+        print(f"Bits: {bits}")  # Отладочное сообщение
 
         # Проверяем наличие стартового бита
         if bits[0] != 1:
             return "Ошибка: пакет должен начинаться со стартового бита (1)."
 
         # Проверяем, что пакет содержит достаточно бит для адреса и R/W
-        if len(bits) < 18:
-            return "Ошибка: пакет должен содержать минимум 18 бит (старт+адрес+R/W+ACK+данные+ACK)."
+        if len(bits) < 20:
+            return "Ошибка: пакет должен содержать минимум 20 бит."
 
         # Извлекаем адрес и бит R/W
         address = bits[1:8]
@@ -191,37 +182,41 @@ def decode_packet(packet):
         if bits[19] != 1:
             return "Ошибка: пакет должен заканчиваться стоп-битом (1)."
 
-        # Преобразуем в строки для отображения
-        binary_result = {
-            'address': ''.join(map(str, address)),
-            'rw_bit': rw_bit,
-            'ack_bit': ack_bit,
-            'data': ''.join(map(str, data)),
-            'data_ack_bit': data_ack_bit
-        }
+        # Преобразуем адрес и данные в строки для отображения
+        address_str = ''.join(map(str, address))
+        data_str = ''.join(map(str, data))
+        print(f"Address: {address_str}, Data: {data_str}")  # Отладочное сообщение
 
         # Преобразуем в шестнадцатеричный формат
-        hex_result = {
-            'address': hex(int(''.join(map(str, address)), 2)),
-            'rw_bit': hex(rw_bit),
-            'ack_bit': hex(ack_bit),
-            'data': hex(int(''.join(map(str, data)), 2)),
-            'data_ack_bit': hex(data_ack_bit)
-        }
+        address_hex = hex(int(address_str, 2))
+        data_hex = hex(int(data_str, 2))
 
         # Преобразуем в десятичный формат
-        decimal_result = {
-            'address': int(''.join(map(str, address)), 2),
-            'rw_bit': rw_bit,
-            'ack_bit': ack_bit,
-            'data': int(''.join(map(str, data)), 2),
-            'data_ack_bit': data_ack_bit
-        }
+        address_dec = int(address_str, 2)
+        data_dec = int(data_str, 2)
 
         return {
-            'binary': binary_result,
-            'hex': hex_result,
-            'decimal': decimal_result
+            'binary': {
+                'address': address_str,
+                'rw_bit': rw_bit,
+                'ack_bit': ack_bit,
+                'data': data_str,
+                'data_ack_bit': data_ack_bit
+            },
+            'hex': {
+                'address': address_hex,
+                'rw_bit': hex(rw_bit),
+                'ack_bit': hex(ack_bit),
+                'data': data_hex,
+                'data_ack_bit': hex(data_ack_bit)
+            },
+            'decimal': {
+                'address': address_dec,
+                'rw_bit': rw_bit,
+                'ack_bit': ack_bit,
+                'data': data_dec,
+                'data_ack_bit': data_ack_bit
+            }
         }
     except ValueError:
         return "Ошибка: некорректный формат пакета"

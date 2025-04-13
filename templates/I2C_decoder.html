@@ -1,39 +1,61 @@
 {% extends "base_page.html" %}
 
 {% block page_title %}
-Декодирование битового пакета I2C
+Декодировщик I2C
 {% endblock %}
 
 {% block page_lead %}
-На этой странице вы можете декодировать битовый пакет I2C, выделяя биты флагов, биты данных, биты адреса и т.д.
+На этой странице вы можете декодировать пакет I2C.
 {% endblock %}
 
 {% block content %}
-<div class="container-sm px-5 py-5" id="i2c-form">
+<div class="container px-4 py-5" id="i2c-decoder-page">
+    <h1>Декодировщик I2C</h1>
     <form method="post">
         {% csrf_token %}
-        <div class="row px-5 py-2">
-            <h3>Введите битовый пакет I2C</h3>
+        <div class="mb-3">
+            <label for="i2c_packet" class="form-label">Введите пакет I2C (биты, разделенные пробелами или нет):</label>
+            <input type="text" class="form-control" id="i2c_packet" name="i2c_packet" required>
         </div>
-        <div class="row px-5 py-2">
-            <div class="col-md-12">
-                <label for="i2c_packet">Битовый пакет (в двоичном формате):</label>
-                <input type="text" class="form-control input-lg" name="i2c_packet" id="i2c_packet" placeholder="Например: 10101000000101101001" required>
-            </div>
-        </div>
-        <div class="row px-5 py-2">
-            <button type="submit" class="btn btn-primary">Декодировать</button>
-        </div>
+        <button type="submit" class="btn btn-primary">Декодировать</button>
     </form>
+
     {% if result %}
-    <div class="row px-5 py-2">
-        <h3>Результат декодирования:</h3>
-        <pre>{{ result.binary }}</pre>
-        <h3>Шестнадцатеричный формат (HEX):</h3>
-        <pre>{{ result.hex }}</pre>
-        <h3>Десятичный формат:</h3>
-        <pre>{{ result.decimal }}</pre>
-    </div>
+        {% if result|stringformat:"s" == "Ошибка" %}
+            <div class="alert alert-danger mt-3" role="alert">
+                {{ result }}
+            </div>
+        {% else %}
+            <div class="mt-3">
+                <h2>Результат декодирования:</h2>
+                <div class="row">
+                    <div class="col-md-4">
+                        <h3>Двоичный формат</h3>
+                        <pre>Адрес: {{ result.binary.address }}</pre>
+                        <pre>R/W бит: {{ result.binary.rw_bit }}</pre>
+                        <pre>ACK бит: {{ result.binary.ack_bit }}</pre>
+                        <pre>Данные: {{ result.binary.data }}</pre>
+                        <pre>ACK бит для данных: {{ result.binary.data_ack_bit }}</pre>
+                    </div>
+                    <div class="col-md-4">
+                        <h3>Шестнадцатеричный формат</h3>
+                        <pre>Адрес: {{ result.hex.address }}</pre>
+                        <pre>R/W бит: {{ result.hex.rw_bit }}</pre>
+                        <pre>ACK бит: {{ result.hex.ack_bit }}</pre>
+                        <pre>Данные: {{ result.hex.data }}</pre>
+                        <pre>ACK бит для данных: {{ result.hex.data_ack_bit }}</pre>
+                    </div>
+                    <div class="col-md-4">
+                        <h3>Десятичный формат</h3>
+                        <pre>Адрес: {{ result.decimal.address }}</pre>
+                        <pre>R/W бит: {{ result.decimal.rw_bit }}</pre>
+                        <pre>ACK бит: {{ result.decimal.ack_bit }}</pre>
+                        <pre>Данные: {{ result.decimal.data }}</pre>
+                        <pre>ACK бит для данных: {{ result.decimal.data_ack_bit }}</pre>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
     {% endif %}
 </div>
 {% endblock %}

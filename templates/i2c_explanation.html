@@ -1,73 +1,103 @@
-{% extends "base_page.html" %}
-{% load static %}
+    {% extends "base_page.html" %}
 
-{% block page_title %}
-Разбор пакета I2C
-{% endblock %}
-
-{% block page_lead %}
-На этой странице объясняется, что значит каждый бит в пакете I2C, кто отправляет, кто мастер, кто slave и т.д.
-{% endblock %}
-
-{% block content %}
-<div class="container px-4 py-5" id="i2c-explanation-page">
-    <h1>Разбор пакета I2C</h1>
-    <p>Пакет I2C состоит из нескольких частей. Давайте разберем их подробнее:</p>
-
-    <div class="table-responsive">
-        <table class="table table-striped table-sm custom-table">
-            <thead>
-                <tr>
-                    <th scope="col" class="py-3">Элемент</th>
-                    <th scope="col" class="py-3">Описание</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="py-3">Стартовый бит</td>
-                    <td class="py-3">Указывает на начало передачи данных. Устанавливается мастером и сигнализирует slave-устройствам о начале передачи.</td>
-                </tr>
-                <tr>
-                    <td class="py-3">Адрес</td>
-                    <td class="py-3">Состоит из 7 бит и указывает, какое устройство должно ответить. Адрес отправляется мастером.</td>
-                </tr>
-                <tr>
-                    <td class="py-3">Бит R/W</td>
-                    <td class="py-3">Указывает, будет ли мастер читать данные с устройства (1) или писать данные в устройство (0). Этот бит также отправляется мастером.</td>
-                </tr>
-                <tr>
-                    <td class="py-3">Бит ACK/NACK</td>
-                    <td class="py-3">Используется для подтверждения приема данных. Если slave-устройство успешно приняло данные, оно отправляет ACK (0). Если данные не были приняты, оно отправляет NACK (1).</td>
-                </tr>
-                <tr>
-                    <td class="py-3">Данные</td>
-                    <td class="py-3">Передаются в виде 8-битных байтов. Данные могут отправляться как мастером, так и slave-устройством в зависимости от бита R/W.</td>
-                </tr>
-                <tr>
-                    <td class="py-3">Стоповый бит</td>
-                    <td class="py-3">Указывает на окончание передачи данных. Устанавливается мастером и сигнализирует slave-устройствам о завершении передачи.</td>
-                </tr>
-            </tbody>
-        </table>
+    {% block page_title %}
+    Информация о пакете данных I2C
+    {% endblock %}
+    
+    {% block page_lead %}
+    На этой странице представлена информация о пакете данных I2C, включая описание каждого бита, стартового и стопового бита, максимальной длины слова, назначения бита режима и других аспектов.
+    {% endblock %}
+    
+    {% block content %}
+    <div class="container px-4 py-5" id="i2c-explanation-page">
+        <h1 class="text-center mb-4">Информация о пакете данных I2C</h1>
+    
+        <div class="row row-cols-1 row-cols-md-2 g-4">
+            <div class="col">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="bi bi-play-fill"></i> Стартовый бит</h5>
+                        <p class="card-text">Стартовый бит указывает на начало передачи данных. Он всегда устанавливается мастером и сигнализирует slave-устройствам о начале передачи.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="bi bi-person-badge-fill"></i> Адрес</h5>
+                        <p class="card-text">Адрес состоит из 7 бит и указывает, какое устройство должно ответить. Адрес отправляется мастером.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="bi bi-arrow-repeat"></i> Бит R/W</h5>
+                        <p class="card-text">Бит R/W (Read/Write) указывает, будет ли мастер читать данные с устройства (1) или писать данные в устройство (0). Этот бит также отправляется мастером.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="bi bi-check-circle-fill"></i> Бит ACK/NACK</h5>
+                        <p class="card-text">Бит ACK/NACK (Acknowledge/Not Acknowledge) используется для подтверждения приема данных. Если slave-устройство успешно приняло данные, оно отправляет ACK (0). Если данные не были приняты, оно отправляет NACK (1).</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="bi bi-file-earmark-text-fill"></i> Данные</h5>
+                        <p class="card-text">Данные передаются в виде 8-битных байтов. Данные могут отправляться как мастером, так и slave-устройством в зависимости от бита R/W.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="bi bi-stop-circle-fill"></i> Стоп бит</h5>
+                        <p class="card-text">Стоп бит указывает на окончание передачи данных. Он всегда устанавливается мастером и сигнализирует slave-устройствам о завершении передачи.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="bi bi-rulers"></i> Максимальная длина слова</h5>
+                        <p class="card-text">Максимальная длина слова в I2C составляет 8 бит. Это означает, что каждый байт данных состоит из 8 бит.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="bi bi-gear-fill"></i> Назначение бита режима</h5>
+                        <p class="card-text">Бит режима может использоваться для указания специальных режимов работы, таких как быстрая передача данных или режим с низким энергопотреблением.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="bi bi-info-circle-fill"></i> Ответы Slave</h5>
+                        <p class="card-text">После получения данных или команды, slave-устройство может отправить ответ мастеру. Этот ответ может содержать данные, подтверждение выполнения команды или статус устройства. Ответ начинается с бита ACK/NACK, за которым следуют данные, если это необходимо.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <h2 class="mt-5">Пример пакета I2C</h2>
+        <p>Пример пакета I2C: <code>1 0101000 0 0 01011010 0 1</code></p>
+        <ul class="list-group list-group-numbered">
+            <li class="list-group-item"><code>1</code> - Старт бит</li>
+            <li class="list-group-item"><code>0101000</code> - Адрес устройства (0x50)</li>
+            <li class="list-group-item"><code>0</code> - Бит R/W (запись)</li>
+            <li class="list-group-item"><code>0</code> - Бит ACK (подтверждение)</li>
+            <li class="list-group-item"><code>01011010</code> - Данные (0x5A)</li>
+            <li class="list-group-item"><code>0</code> - Бит ACK (подтверждение)</li>
+            <li class="list-group-item"><code>1</code> - Стоп бит</li>
+        </ul>
     </div>
-
-    <h2>Пример пакета I2C</h2>
-    <p>Пример пакета I2C: <code>1 0101000 0 0 01011010 0 1</code></p>
-    <ul>
-        <li><code>1</code> - Стартовый бит</li>
-        <li><code>0101000</code> - Адрес устройства (0x50)</li>
-        <li><code>0</code> - Бит R/W (запись)</li>
-        <li><code>0</code> - Бит ACK (подтверждение)</li>
-        <li><code>01011010</code> - Данные (0x5A)</li>
-        <li><code>0</code> - Бит ACK (подтверждение)</li>
-        <li><code>1</code> - Стоповый бит</li>
-    </ul>
-</div>
-
-<style>
-  .custom-table {
-      background-color: #ffffff; /* Светло-серый фон */
-  }
-</style>
-
-{% endblock %}
+    {% endblock %}
+    

@@ -19,7 +19,6 @@ def get_terms_for_table():
             cnt += 1
     return terms
 
-
 def write_term(new_term, new_definition):
     """
     Добавляет новый термин в файл terms.csv или обновляет существующий термин.
